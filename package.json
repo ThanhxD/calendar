@@ -1,0 +1,23 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "description": "A page view calendar.",
+  "main": "generator.js",
+  "dependencies": {
+    "colors": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "show": "node generator.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ThanhxD/calendar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThanhxD/calendar/issues"
+  },
+  "homepage": "https://github.com/ThanhxD/calendar#readme"
+}
