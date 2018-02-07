@@ -4,7 +4,7 @@
 
 .calendar h2{
     text-align: center;
-    text-decoration: underline;
+    text-decoration: underline dashed;
 
     color: #09f;
 }
@@ -14,14 +14,28 @@
     justify-content: center;
 }
 
+.input-date select {
+    padding: 5px;
+    margin-right: 10px;
+
+    border: 1px dashed #09f;
+
+    color: #09f;
+}
+
 .maps {
     display: grid;
     grid-template-columns: repeat(7, 14.28%);
+    color: #09f
 }
 
 .maps div {
-    border: 1px solid #333;
+    height: 35px;
+
+    border-top: 1px dashed #09f;
+    
     display: flex;
+    
     align-items: center;
     justify-content: center;
 }
@@ -39,6 +53,6 @@
     color: gray;
 }
 
-.black {
-    color: black;
+.blue {
+    color: #09f;
 }

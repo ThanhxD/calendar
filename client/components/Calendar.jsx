@@ -73,7 +73,7 @@ export default class Calendar extends React.Component {
                 } else if (index > 0 && (index+1) % 7 === 0) {
                     return (<div className="red">{item}<br/></div>);
                 } else {
-                    return (<div className="black">{item}</div>)
+                    return (<div className="blue">{item}</div>)
                 }
             })}
             </div>
