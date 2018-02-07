@@ -1,0 +1,44 @@
+.calendar {
+    padding: 5px;
+}
+
+.calendar h2{
+    text-align: center;
+    text-decoration: underline;
+
+    color: #09f;
+}
+
+.input-date {
+    display: flex;
+    justify-content: center;
+}
+
+.maps {
+    display: grid;
+    grid-template-columns: repeat(7, 14.28%);
+}
+
+.maps div {
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    background-color: #09f;
+    color: #fff;
+}
+
+.gray {
+    color: gray;
+}
+
+.black {
+    color: black;
+}
