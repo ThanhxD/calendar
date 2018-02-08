@@ -5,10 +5,11 @@ export default class Calendar extends React.Component {
 
     constructor() {
         super();
+        let today = new Date();
         this.state = {
-            day: 6,
-            month: 2,
-            year: 2018
+            day: today.getDate(),
+            month: today.getMonth() + 1,
+            year: today.getFullYear()
         }
 
         this.dateChange = this.dateChange.bind(this);
@@ -29,13 +30,13 @@ export default class Calendar extends React.Component {
         return (
             <div className="input-date">
                 <select name="days" onChange={this.dateChange}>
-                {Array.from({length: 31}, (v, i) => i+1).map(v => <option key={'day' + v} value={v}>{v}</option>)}
+                {Array.from({length: 31}, (v, i) => i+1).map(v => <option key={'day' + v} value={v} selected={v===this.state.day? true: false}>{v}</option>)}
                 </select>
                 <select name="months" onChange={this.dateChange}>
-                {Array.from({length: 12}, (v, i) => i+1).map(v => <option key={'month' + v} value={v}>{v}</option>)}
+                {Array.from({length: 12}, (v, i) => i+1).map(v => <option key={'month' + v} value={v} selected={v===this.state.month? true: false}>{v}</option>)}
                 </select>
                 <select name="years" onChange={this.dateChange}>
-                {Array.from({length: 100}, (v, i) => i+1950).map(v => <option key={'year' + v} value={v}>{v}</option>)}
+                {Array.from({length: 100}, (v, i) => i+1950).map(v => <option key={'year' + v} value={v} selected={v===this.state.year? true: false}>{v}</option>)}
                 </select>
             </div>
         )
