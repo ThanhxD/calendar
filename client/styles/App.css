@@ -16,8 +16,8 @@ html, body, #root, #container {
 }
 
 .box {
-    width: 700px;
-    height: 400px;
+    width: 900px;
+    height: 500px;
     
     display: flex;
 
