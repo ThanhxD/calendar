@@ -40,12 +40,30 @@
     justify-content: center;
 }
 
+.day-cell {
+    cursor: pointer;
+}
+
+.day-cell:hover {
+    background-color: #09f;
+    color: #fff;
+
+    border-left: 1px dashed #fff;
+    border-right: 1px dashed #fff;
+    border-top: 1px dashed #fff;
+}
+
 .red {
     color: red;
 }
 
-.green {
+.current-blue {
     background-color: #09f;
+    color: #fff;
+}
+
+.current-red {
+    background-color: red;
     color: #fff;
 }
 

@@ -13,6 +13,7 @@ export default class Calendar extends React.Component {
         }
 
         this.dateChange = this.dateChange.bind(this);
+        this.changeDay = this.changeDay.bind(this);
     }
 
     render() {
@@ -29,14 +30,14 @@ export default class Calendar extends React.Component {
     genInputDate() {
         return (
             <div className="input-date">
-                <select name="days" onChange={this.dateChange}>
-                {Array.from({length: 31}, (v, i) => i+1).map(v => <option key={'day' + v} value={v} selected={v===this.state.day? true: false}>{v}</option>)}
+                <select name="days" onChange={this.dateChange} value={this.state.day}>
+                {Array.from({length: 31}, (v, i) => i+1).map(v => <option key={'day' + v} value={v}>{v}</option>)}
                 </select>
-                <select name="months" onChange={this.dateChange}>
-                {Array.from({length: 12}, (v, i) => i+1).map(v => <option key={'month' + v} value={v} selected={v===this.state.month? true: false}>{v}</option>)}
+                <select name="months" onChange={this.dateChange} value={this.state.month}>
+                {Array.from({length: 12}, (v, i) => i+1).map(v => <option key={'month' + v} value={v}>{v}</option>)}
                 </select>
-                <select name="years" onChange={this.dateChange}>
-                {Array.from({length: 100}, (v, i) => i+1950).map(v => <option key={'year' + v} value={v} selected={v===this.state.year? true: false}>{v}</option>)}
+                <select name="years" onChange={this.dateChange} value={this.state.year}>
+                {Array.from({length: 100}, (v, i) => i+1950).map(v => <option key={'year' + v} value={v}>{v}</option>)}
                 </select>
             </div>
         )
@@ -52,29 +53,37 @@ export default class Calendar extends React.Component {
         }
     }
 
+    changeDay(event) {
+        let value = eval(event.target.innerText);
+        this.setState(state => Object.assign(state, {day: value}));
+    }
+
     genDayMap() {
         let maps = this.generator();
-        console.log(maps);
         return (
             <div className="maps">
             {Array.from(["Sun", 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']).map((item, index) => {
                 if (index === 0 || index === 6) {
-                    return (<div className="title red">{item}</div>)
+                    return (<div className="title red" key={item}>{item}</div>)
                 } else {
-                    return (<div className="title">{item}</div>)
+                    return (<div className="title" key={item}>{item}</div>)
                 }
             })}
             {maps.map((item, index) => {
                 if (item === 0) {
-                    return (<div className="gray">-</div>)
+                    return (<div className="gray" key={index + '-'}>-</div>)
                 } else if (item === this.state.day) {
-                    return (<div className="green">{item}</div>)
+                    if (index % 7 === 0 || (index + 1) % 7 === 0) {
+                        return (<div className="current-red" key={item}>{item}</div>)
+                    } else {
+                        return (<div className="current-blue" key={item}>{item}</div>)
+                    }
                 } else if (index % 7 === 0) {
-                    return (<div className="red">{item}</div>)
+                    return (<div className="day-cell red" key={item} onClick={this.changeDay}>{item}</div>)
                 } else if (index > 0 && (index+1) % 7 === 0) {
-                    return (<div className="red">{item}<br/></div>);
+                    return (<div className="day-cell red" key={item} onClick={this.changeDay}>{item}<br/></div>);
                 } else {
-                    return (<div className="blue">{item}</div>)
+                    return (<div className="day-cell blue" key={item} onClick={this.changeDay}>{item}</div>)
                 }
             })}
             </div>
@@ -85,8 +94,6 @@ export default class Calendar extends React.Component {
         let day = this.state.day;
         let month = this.state.month;
         let year = this.state.year;
-
-        console.log('call');
 
         return generateMonthCalendar(month, year);
 
@@ -113,7 +120,6 @@ export default class Calendar extends React.Component {
             let year = calculateYear(date.year);
             let century = calculateCentury(date.year);
         
-            // console.log('calculate for: ', day, ' - ', month, ' - ', year, ' - ', century);
             let weekday = (Math.floor(13 * (month + 1) / 5)  + Math.floor(year / 4) + Math.floor(century / 4) + day + year + 5 * century) % 7;
             
             return Math.trunc((Math.trunc(weekday) + 6) % 7);
